@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"fmt"
 	"os"
 	"sync"
 	"time"
@@ -83,23 +84,23 @@ func customTimeEncoder(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
 }
 
 // Info 级别日志
-func Info(msg string, fields ...zap.Field) {
-	logger.Info(msg, fields...)
+func Info(msg string, args ...interface{}) {
+	logger.Info(fmt.Sprintf(msg, args...))
 }
 
 // Debug 级别日志
-func Debug(msg string, fields ...zap.Field) {
-	logger.Debug(msg, fields...)
+func Debug(msg string, args ...interface{}) {
+	logger.Debug(fmt.Sprintf(msg, args...))
 }
 
 // Warn 级别日志
-func Warn(msg string, fields ...zap.Field) {
-	logger.Warn(msg, fields...)
+func Warn(msg string, args ...interface{}) {
+	logger.Warn(fmt.Sprintf(msg, args...))
 }
 
 // Error 级别日志
-func Error(msg string, fields ...zap.Field) {
-	logger.Error(msg, fields...)
+func Error(msg string, args ...interface{}) {
+	logger.Error(fmt.Sprintf(msg, args...))
 }
 func Sync() error {
 	if logger != nil {
